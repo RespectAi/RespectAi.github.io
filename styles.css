@@ -316,4 +316,9 @@
       margin: 5px 10px;
     }
   }
+  @media (max-width: 768px) {
+    .hero {
+      margin-top: 150px; /* Increase this value if needed */
+    }
+  }
   
