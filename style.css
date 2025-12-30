@@ -385,6 +385,14 @@ ul {
 .image-placeholder i {
   font-size: 150px;
   color: rgba(255, 255, 255, 0.7);
+  display: none; /* Hide icon if present */
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 @keyframes float {
@@ -473,6 +481,15 @@ ul {
   font-size: 120px;
   color: rgba(255, 255, 255, 0.9);
   z-index: 1;
+  display: none; /* Hide icon */
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
 }
 
 .about-text h3 {
