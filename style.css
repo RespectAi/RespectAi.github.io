@@ -846,14 +846,18 @@ ul {
 
 /* Contact Form */
 .contact-form {
+  display: block; /* Ensure block layout */
   background: var(--light-bg);
   padding: var(--spacing-xl);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
+  width: 100%;
 }
 
 .form-group {
+  display: block; /* Ensure block layout */
   margin-bottom: var(--spacing-lg);
+  width: 100%;
 }
 
 .form-group label {
@@ -870,6 +874,7 @@ ul {
 
 .form-group input,
 .form-group textarea {
+  display: block;
   width: 100%;
   padding: var(--spacing-md);
   border: 2px solid var(--gray-200);
@@ -878,6 +883,7 @@ ul {
   font-family: var(--font-main);
   transition: all var(--transition-base);
   background: var(--white);
+  box-sizing: border-box; /* Ensure padding doesn't overflow */
 }
 
 .form-group input:focus,
@@ -902,6 +908,23 @@ ul {
 
 .contact-form .btn-primary:hover {
   box-shadow: var(--shadow-colored);
+}
+
+/* Download Button Animation */
+.about-cta .btn-primary {
+  animation: pulse-download 2s infinite;
+}
+
+@keyframes pulse-download {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
 }
 
 /* ==========================================
