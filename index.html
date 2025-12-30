@@ -2,139 +2,467 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Respect Portfolio</title>
-  <!-- Google Fonts & Font Awesome -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Respect Portfolio | Modern Web Developer</title>
+  <meta name="description" content="Portfolio of Respect - A passionate web developer crafting modern and responsive web experiences">
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top" class="light-theme">
-  <!-- Animated Background for accent -->
+  <!-- Animated Background Particles -->
   <div class="animated-bg"></div>
+  <canvas id="particles-canvas"></canvas>
+  
+  <!-- Cursor Trail Effect -->
+  <div class="cursor-trail"></div>
+  
+  <!-- Progress Indicator -->
+  <div class="progress-indicator"></div>
   
   <!-- Navigation -->
-  <nav class="main-nav">
+  <nav class="main-nav" id="mainNav">
     <div class="container nav-container">
-      <div class="logo">Respect</div>
+      <div class="logo" data-aos="fade-right">
+        <span class="logo-text">Respect</span>
+        <span class="logo-dot"></span>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
-        <li><a href="#about" class="active">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#interests">Interests</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" class="nav-link active">About</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#interests" class="nav-link">Interests</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
   
   <!-- Hero Section -->
-  <header class="hero">
-    <div class="container hero-content">
-      <h1 class="gradient-text">
-        Hello, I'm <span>Respect</span>
-      </h1>
-      <p>A Passionate Web Developer Crafting Modern and Responsive Web Experiences</p>
-      <a href="#about" class="cta-btn">Discover More</a>
+  <header class="hero section-page" id="hero">
+    <div class="container hero-content" data-aos="fade-up">
+      <div class="hero-text">
+        <h1 class="gradient-text">
+          Hello, I'm <span class="highlight-name">Respect</span>
+        </h1>
+        <p class="hero-subtitle">A Passionate Web Developer Crafting Modern and Responsive Web Experiences</p>
+        <div class="hero-cta">
+          <a href="#about" class="cta-btn primary-btn">
+            <span>Discover More</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
+          <a href="#projects" class="cta-btn secondary-btn">
+            <span>View Projects</span>
+            <i class="fas fa-code"></i>
+          </a>
+        </div>
+        <div class="social-links hero-social">
+          <a href="https://github.com/RespectAi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/moses-abiodun-141877390/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
     </div>
   </header>
   
   <!-- Main Content -->
-  <main>
+  <main id="mainContent">
     <!-- About Section -->
-    <section id="about" class="section about-section">
+    <section id="about" class="section section-page">
       <div class="container">
-        <h2>About Me</h2>
-        <div class="card about-card">
-          <p>Hello! I'm <strong>Respect</strong>, a passionate and dedicated web developer with a strong focus on creating innovative, user-friendly websites and applications. I specialize in turning complex challenges into elegant digital solutions.
-
-Am trained on a robust skill set, including front-end development, back-end engineering, and everything in between. <br>Let's build something incredible together!</br></p>
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+        <div class="card about-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="about-content">
+            <p>Hello! I'm <strong>Respect</strong>, a passionate and dedicated web developer with a strong focus on creating innovative, user-friendly websites and applications. I specialize in turning complex challenges into elegant digital solutions.</p>
+            <p>I'm trained with a robust skill set, including front-end development, back-end engineering, and everything in between. Let's build something incredible together!</p>
+          </div>
         </div>
       </div>
     </section>
     
     <!-- Education Section -->
-    <section id="education" class="section education-section">
+    <section id="education" class="section section-page">
       <div class="container">
-        <h2>Education</h2>
-        <div class="card education-card">
-          <p>I am a graduate of Goverment Secondry School kuje with my full credit in WAEC. I am currently styding Electrical and Electronics Enginering in Kwara State University, Nigeria.</p>
-          <a href="My CV.pdf" download class="btn">Download My CV</a>
+        <h2 class="section-title" data-aos="fade-up">Education</h2>
+        <div class="card education-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="education-content">
+            <div class="education-timeline">
+              <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <h3>Secondary Education</h3>
+                  <p class="timeline-location">Government Secondary School, Kuje</p>
+                  <p class="timeline-description">Graduated with full credit in WAEC</p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <h3>Higher Education</h3>
+                  <p class="timeline-location">Kwara State University, Nigeria</p>
+                  <p class="timeline-description">Currently studying Electrical and Electronics Engineering</p>
+                </div>
+              </div>
+            </div>
+            <a href="My CV.pdf" download class="btn download-btn">
+              <i class="fas fa-download"></i>
+              <span>Download My CV</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
     
     <!-- Skills Section -->
-    <section id="skills" class="section skills-section">
+    <section id="skills" class="section section-page">
       <div class="container">
-        <h2>Skills</h2>
+        <h2 class="section-title" data-aos="fade-up">Skills</h2>
         <div class="grid skills-grid">
-          <div class="card skill-card">HTML</div>
-          <div class="card skill-card">CSS</div>
-          <div class="card skill-card">JavaScript</div>
-          <div class="card skill-card">Content Management Systems</div> 
+          <div class="card skill-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="skill-icon">
+              <i class="fab fa-html5"></i>
+            </div>
+            <h3>HTML</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="90"></div>
+            </div>
+            <span class="skill-percentage">90%</span>
+          </div>
+          <div class="card skill-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="skill-icon">
+              <i class="fab fa-css3-alt"></i>
+            </div>
+            <h3>CSS</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="85"></div>
+            </div>
+            <span class="skill-percentage">85%</span>
+          </div>
+          <div class="card skill-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="skill-icon">
+              <i class="fab fa-js"></i>
+            </div>
+            <h3>JavaScript</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="80"></div>
+            </div>
+            <span class="skill-percentage">80%</span>
+          </div>
+          <div class="card skill-card" data-aos="zoom-in" data-aos-delay="400">
+            <div class="skill-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <h3>Content Management Systems</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="75"></div>
+            </div>
+            <span class="skill-percentage">75%</span>
+          </div>
         </div>
       </div>
     </section>
     
     <!-- Interests Section -->
-    <section id="interests" class="section interests-section">
+    <section id="interests" class="section section-page">
       <div class="container">
-        <h2>My Interests</h2>
+        <h2 class="section-title" data-aos="fade-up">My Interests</h2>
         <div class="grid interests-grid">
-          <div class="interest-card">Exploring Web Development</div>
-          <div class="interest-card">Atificial Inteligence</div>
-          <div class="interest-card">Emaging Tecnologies</div>
-          <div class="interest-card">Data Analysis</div>
-          <div class="interest-card">Inovative Tecnologies</div>
-          <div class="interest-card">Problem Solving</div>
+          <div class="interest-card" data-aos="flip-left" data-aos-delay="100">
+            <i class="fas fa-code"></i>
+            <h3>Exploring Web Development</h3>
+          </div>
+          <div class="interest-card" data-aos="flip-left" data-aos-delay="200">
+            <i class="fas fa-robot"></i>
+            <h3>Artificial Intelligence</h3>
+          </div>
+          <div class="interest-card" data-aos="flip-left" data-aos-delay="300">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Emerging Technologies</h3>
+          </div>
+          <div class="interest-card" data-aos="flip-left" data-aos-delay="400">
+            <i class="fas fa-chart-line"></i>
+            <h3>Data Analysis</h3>
+          </div>
+          <div class="interest-card" data-aos="flip-left" data-aos-delay="500">
+            <i class="fas fa-rocket"></i>
+            <h3>Innovative Technologies</h3>
+          </div>
+          <div class="interest-card" data-aos="flip-left" data-aos-delay="600">
+            <i class="fas fa-puzzle-piece"></i>
+            <h3>Problem Solving</h3>
+          </div>
         </div>
       </div>
     </section>
     
     <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
+    <section id="projects" class="section section-page">
       <div class="container">
-        <h2>My Projects</h2>
+        <h2 class="section-title" data-aos="fade-up">My Projects</h2>
         <div class="grid projects-grid">
-          <div class="card project-card">
-            <h3>Project 1: Remmittance App</h3>
-            <p>An Application that help make remitance calculations easy.</p>
-            <a href="https://grand-figolla-b1a8ae.netlify.app/" target="blank" class="btn">View Details</a>
+          <div class="card project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image">
+              <div class="project-overlay">
+                <a href="https://grand-figolla-b1a8ae.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Remittance App</h3>
+              <p>An Application that helps make remittance calculations easy and efficient for users.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Web App</span>
+                <span class="tech-tag">Calculator</span>
+              </div>
+              <a href="https://grand-figolla-b1a8ae.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn project-btn">
+                <span>View Project</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
-          <div class="card project-card">
-            <h3>Project 2: Responsive Portfolio</h3>
-            <p>A portfolio showcasing my work with a clean and user-friendly interface.</p>
-            <a href="#" class="btn">View Details</a>
+          
+          <div class="card project-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image">
+              <div class="project-overlay">
+                <a href="https://respectai.github.io/" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Responsive Portfolio</h3>
+              <p>A portfolio showcasing my work with a clean and user-friendly interface, built with modern web technologies.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Portfolio</span>
+                <span class="tech-tag">Responsive</span>
+              </div>
+              <a href="https://respectai.github.io/" target="_blank" rel="noopener noreferrer" class="btn project-btn">
+                <span>View Project</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="card project-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image wasteless-image">
+              <div class="project-overlay">
+                <a href="https://wasteless-smart-househol-52lytur.gamma.site/" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://github.com/RespectAi/Final-Project-" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>WasteLess App</h3>
+              <p>A mobile application designed to reduce waste by tracking items in your fridge and providing reminders when items are about to expire. Built with Flutter and Supabase.</p>
+              <div class="project-tech">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">Mobile App</span>
+              </div>
+              <div class="project-links">
+                <a href="https://wasteless-smart-househol-52lytur.gamma.site/" target="_blank" rel="noopener noreferrer" class="btn project-btn">
+                  <span>View Pitch Deck</span>
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://github.com/RespectAi/Final-Project-" target="_blank" rel="noopener noreferrer" class="btn project-btn secondary">
+                  <span>GitHub</span>
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
     
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section section-page">
       <div class="container">
-        <h2>Contact Me</h2>
-        <div class="card contact-card">
-          <p>Feel free to reach out!</p>
-          <p>Email: mabiodun611@gmail.com</p>
-          <p>Phone: +234-810-414-7196</p>
-          <p>GitHub: <a href="https://github.com/RespectAi" target="blank">RespectAi</a></p>
+        <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
+        <div class="contact-wrapper">
+          <div class="card contact-info-card" data-aos="fade-right" data-aos-delay="100">
+            <h3>Get In Touch</h3>
+            <p>Feel free to reach out! I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:mabiodun611@gmail.com">mabiodun611@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                  <strong>Phone</strong>
+                  <a href="tel:+2348104147196">+234-810-414-7196</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <div>
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/RespectAi" target="_blank" rel="noopener noreferrer">RespectAi</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <div>
+                  <strong>LinkedIn</strong>
+                  <a href="https://www.linkedin.com/in/moses-abiodun-141877390/" target="_blank" rel="noopener noreferrer">Moses Abiodun</a>
+                </div>
+              </div>
+            </div>
+            <div class="social-links">
+              <a href="https://github.com/RespectAi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/moses-abiodun-141877390/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="card contact-form-card" data-aos="fade-left" data-aos-delay="200">
+            <h3>Send a Message</h3>
+            <form id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn submit-btn">
+                <span>Send Message</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
   </main>
   
+  <!-- Theme Slider (Ruler Style) -->
+  <div class="theme-slider-container">
+    <div class="theme-slider">
+      <div class="slider-track">
+        <div class="slider-ruler">
+          <div class="ruler-marks"></div>
+        </div>
+        <div class="slider-thumb" id="themeThumb">
+          <div class="thumb-indicator">
+            <i class="fas fa-sun theme-icon sun-icon"></i>
+            <i class="fas fa-moon theme-icon moon-icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="slider-labels">
+        <span class="label-light">Light</span>
+        <span class="label-dark">Dark</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Chatbot -->
+  <div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-toggle" id="chatbotToggle">
+      <i class="fas fa-comments"></i>
+      <span class="chatbot-badge">1</span>
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <div class="chatbot-title">
+          <i class="fas fa-robot"></i>
+          <span>Respect's Assistant</span>
+        </div>
+        <button class="chatbot-close" id="chatbotClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="chat-message bot-message">
+          <div class="message-avatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="message-content">
+            <p>Hello! I'm here to help. What would you like to know?</p>
+          </div>
+        </div>
+      </div>
+      <div class="chatbot-quick-actions" id="quickActions">
+        <button class="quick-action-btn" data-action="contact">Contact Info</button>
+        <button class="quick-action-btn" data-action="projects">Projects</button>
+        <button class="quick-action-btn" data-action="advice">Advice</button>
+        <button class="quick-action-btn" data-action="hello">Say Hello</button>
+        <button class="quick-action-btn" data-action="job">Offer Job</button>
+      </div>
+      <div class="chatbot-input-container">
+        <input type="text" id="chatbotInput" placeholder="Type your message..." class="chatbot-input">
+        <button id="chatbotSend" class="chatbot-send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
   <!-- Scroll to Top Button -->
-  <a href="#top" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
+  <a href="#top" class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  
+  <!-- Achievement Badge (Hidden by default) -->
+  <div class="achievement-badge" id="achievementBadge">
+    <i class="fas fa-trophy"></i>
+    <span class="achievement-text"></span>
+  </div>
   
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 Respect | Built with HTML & CSS</p>
+      <p>&copy; 2025 Respect | Built with <i class="fas fa-heart"></i> using Modern Web Technologies</p>
     </div>
   </footer>
   
+  <!-- JavaScript Libraries -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
