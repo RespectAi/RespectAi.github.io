@@ -751,15 +751,44 @@ ul {
    CONTACT SECTION
    ========================================== */
 .contact {
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
   background: var(--white);
 }
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--spacing-2xl);
   margin-top: var(--spacing-2xl);
+}
+
+/* Stack form fields vertically and reduce outer padding */
+.contact-content .contact-form {
+  padding: var(--spacing-lg);
+  max-width: none;
+  width: 100%;
+}
+
+.contact-form form .form-grid {
+  display: block;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+/* Make inputs full width and reduce textarea height to shorten form */
+.contact-form form .form-group input,
+.contact-form form .form-group textarea {
+  width: 100%;
+}
+
+.contact-form form .form-group textarea {
+  min-height: 72px;
+}
+
+/* Ensure submit button takes full width when stacked */
+.contact-form .btn-primary {
+  width: 100%;
+  padding: 0.8rem 1rem;
 }
 
 .contact-info h3 {

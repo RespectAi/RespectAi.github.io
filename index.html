@@ -291,7 +291,7 @@
         <div class="contact-info">
           <h3>Let's Connect</h3>
           <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-          
+
           <div class="contact-items">
             <div class="contact-item">
               <div class="contact-icon">
@@ -302,7 +302,7 @@
                 <a href="mailto:mabiodun611@gmail.com">mabiodun611@gmail.com</a>
               </div>
             </div>
-            
+
             <div class="contact-item">
               <div class="contact-icon">
                 <i class="fas fa-phone"></i>
@@ -312,7 +312,7 @@
                 <a href="tel:+2348104147196">+234 810 414 7196</a>
               </div>
             </div>
-            
+
             <div class="contact-item">
               <div class="contact-icon">
                 <i class="fas fa-map-marker-alt"></i>
@@ -320,29 +320,41 @@
               <div class="contact-details">
                 <h4>Location</h4>
                 <p>Abuja, Nigeria</p>
-            <input type="text" id="name" name="name" placeholder="John Doe" required>
+              </div>
+            </div>
           </div>
-          
-          <div class="form-group">
-            <label for="email">Email Address <span class="required">*</span></label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="subject">Subject <span class="required">*</span></label>
-            <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Message <span class="required">*</span></label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-          </div>
-          
-          <button type="submit" class="btn btn-primary">
-            Send Message
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </form>
+        </div>
+
+        <div class="contact-form">
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject <span class="required">*</span></label>
+                <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="3" placeholder="Tell me about your project..." required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Send Message
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
