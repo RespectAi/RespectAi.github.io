@@ -1,281 +1,292 @@
-// ==========================================
-// PROFESSIONAL PORTFOLIO - JAVASCRIPT
-// ==========================================
+// ==========================================================================
+// RESPECT PORTFOLIO 3.0 - CORE JAVASCRIPT
+// Features:
+// - Cursor Spotlight Glow (GPU-composited requestAnimationFrame)
+// - IntersectionObserver Scroll-Spy for desktop indicator lines & top nav
+// - Persistent Dark/Light Theme Switching
+// - Mobile Drawer Navigation
+// - Contact Form Validation & Instant WhatsApp Prefill
+// ==========================================================================
 
-// ==========================================
-// MOBILE MENU TOGGLE
-// ==========================================
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
-
-if (hamburger && navMenu) {
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-  });
-
-  // Close menu when clicking on a nav link
-  document.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-    });
-  });
-}
-
-// ==========================================
-// NAVBAR SCROLL EFFECT
-// ==========================================
-const navbar = document.getElementById("navbar");
-let lastScroll = 0;
-
-window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset;
-
-  // Add shadow when scrolled
-  if (currentScroll > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-
-  lastScroll = currentScroll;
+document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
+  initCursorSpotlight();
+  initScrollSpy();
+  initMobileMenu();
+  initContactForm();
+  initSmoothScroll();
+  initVideoToggle();
 });
 
-// ==========================================
-// ACTIVE NAV LINK ON SCROLL
-// ==========================================
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-link");
+// --------------------------------------------------------------------------
+// 1. Theme Management (Dark / Light Mode)
+// --------------------------------------------------------------------------
+function initTheme() {
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  const htmlRoot = document.documentElement;
 
-function highlightNavLink() {
-  const scrollPosition = window.pageYOffset + 100;
+  // Retrieve stored theme or system preference
+  const savedTheme = localStorage.getItem("respect_theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const initialTheme = savedTheme ? savedTheme : prefersDark ? "dark" : "light";
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    const sectionId = section.getAttribute("id");
+  setTheme(initialTheme);
 
-    if (
-      scrollPosition >= sectionTop &&
-      scrollPosition < sectionTop + sectionHeight
-    ) {
-      navLinks.forEach((link) => {
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const currentTheme = htmlRoot.getAttribute("data-theme") || "dark";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      setTheme(newTheme);
+    });
+  }
+
+  function setTheme(theme) {
+    htmlRoot.setAttribute("data-theme", theme);
+    localStorage.setItem("respect_theme", theme);
+  }
+}
+
+// --------------------------------------------------------------------------
+// 2. Cursor Spotlight Glow (Brittany Chiang style)
+// --------------------------------------------------------------------------
+function initCursorSpotlight() {
+  const spotlight = document.getElementById("cursor-spotlight");
+  if (!spotlight) return;
+
+  // Only enable on desktop pointer devices
+  const isPointerFine = window.matchMedia("(pointer: fine)").matches;
+  if (!isPointerFine) {
+    spotlight.style.display = "none";
+    return;
+  }
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 3;
+  let rafId = null;
+
+  window.addEventListener("pointermove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty("--cursor-x", `${mouseX}px`);
+        document.documentElement.style.setProperty("--cursor-y", `${mouseY}px`);
+        rafId = null;
+      });
+    }
+  }, { passive: true });
+}
+
+// --------------------------------------------------------------------------
+// 3. Scroll-Spy Navigation (Brittany Chiang & Cassidy Williams indicator lines)
+// --------------------------------------------------------------------------
+function initScrollSpy() {
+  const sections = document.querySelectorAll("section[data-spy]");
+  const spyLinks = document.querySelectorAll(".spy-link");
+  const quickLinks = document.querySelectorAll(".quick-link");
+
+  if (!sections.length) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-20% 0px -60% 0px",
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const activeId = entry.target.getAttribute("id");
+        setActiveLink(activeId);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((sec) => observer.observe(sec));
+
+  function setActiveLink(id) {
+    // Update left sidebar scroll-spy links
+    spyLinks.forEach((link) => {
+      const section = link.getAttribute("data-section");
+      if (section === id) {
+        link.classList.add("active");
+      } else {
         link.classList.remove("active");
-        if (link.getAttribute("href") === `#${sectionId}`) {
-          link.classList.add("active");
-        }
-      });
-    }
-  });
+      }
+    });
+
+    // Update top nav links
+    quickLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (href === `#${id}`) {
+        link.style.color = "var(--text-primary)";
+      } else {
+        link.style.color = "";
+      }
+    });
+  }
 }
 
-window.addEventListener("scroll", highlightNavLink);
+// --------------------------------------------------------------------------
+// 4. Mobile Menu Drawer
+// --------------------------------------------------------------------------
+function initMobileMenu() {
+  const toggleBtn = document.getElementById("mobile-menu-toggle");
+  const drawer = document.getElementById("mobile-drawer");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
 
-// ==========================================
-// SMOOTH SCROLLING FOR ANCHOR LINKS
-// ==========================================
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
+  if (!toggleBtn || !drawer) return;
 
-    if (target) {
-      const offsetTop = target.offsetTop - 70; // Account for fixed navbar
-
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
-  });
-});
-
-// ==========================================
-// BACK TO TOP BUTTON
-// ==========================================
-const backToTopButton = document.getElementById("back-to-top");
-
-if (backToTopButton) {
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.add("visible");
-    } else {
-      backToTopButton.classList.remove("visible");
-    }
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = drawer.classList.toggle("open");
+    toggleBtn.classList.toggle("active", isOpen);
+    toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 
-  backToTopButton.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      drawer.classList.remove("open");
+      toggleBtn.classList.remove("active");
+      toggleBtn.setAttribute("aria-expanded", "false");
     });
   });
 }
 
-// ==========================================
-// SCROLL ANIMATIONS (Fade In on Scroll)
-// ==========================================
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
+// --------------------------------------------------------------------------
+// 5. Smooth In-Page Anchor Navigation
+// --------------------------------------------------------------------------
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
-    }
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const topNavHeight = 65;
+        const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - topNavHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+
+        // Update URL hash smoothly without jump
+        if (history.pushState) {
+          history.pushState(null, null, targetId);
+        }
+      }
+    });
   });
-}, observerOptions);
+}
 
-// Elements to animate on scroll
-const animateOnScroll = document.querySelectorAll(
-  ".skill-card, .project-card, .stat-item, .contact-item"
-);
+// --------------------------------------------------------------------------
+// 6. Contact Form Validation & Instant WhatsApp Prefill
+// --------------------------------------------------------------------------
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  const statusEl = document.getElementById("form-status");
+  const submitBtn = document.getElementById("btn-submit");
 
-animateOnScroll.forEach((element) => {
-  element.style.opacity = "0";
-  element.style.transform = "translateY(30px)";
-  element.style.transition = "all 0.6s ease-out";
-  observer.observe(element);
-});
+  if (!form) return;
 
-// ==========================================
-// FORM SUBMISSION HANDLING
-// ==========================================
-const contactForm = document.getElementById("contact-form");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Get form data
-    const formData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      subject: document.getElementById("subject").value,
-      message: document.getElementById("message").value,
-    };
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const projectType = form.projectType.value;
+    const message = form.message.value.trim();
 
-    // Show success message (in a real application, you would send this to a server)
-    alert(
-      `Thank you, ${formData.name}! Your message has been received. I'll get back to you soon at ${formData.email}.`
-    );
+    let isValid = true;
 
-    // Reset form
-    contactForm.reset();
-
-    // In a real application, you would do something like:
-    // fetch('/api/contact', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   // Handle success
-    // })
-    // .catch(error => {
-    //   // Handle error
-    // });
-  });
-}
-
-// ==========================================
-// TYPING EFFECT FOR HERO SUBTITLE (Optional Enhancement)
-// ==========================================
-function typeWriter(element, text, speed = 100) {
-  let i = 0;
-  element.textContent = "";
-
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
+    // Validate Name
+    if (!name) {
+      showError("name-error", "Please enter your name.");
+      isValid = false;
+    } else {
+      clearError("name-error");
     }
+
+    // Validate Email
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email-error", "Please enter a valid email address.");
+      isValid = false;
+    } else {
+      clearError("email-error");
+    }
+
+    // Validate Message
+    if (!message || message.length < 10) {
+      showError("message-error", "Message must be at least 10 characters long.");
+      isValid = false;
+    } else {
+      clearError("message-error");
+    }
+
+    if (!isValid) return;
+
+    // Provide immediate interactive confirmation + direct WhatsApp option
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>`;
+
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<span>Sent!</span> <i class="fas fa-check"></i>`;
+
+      // Build WhatsApp message with user input
+      const waEncoded = encodeURIComponent(
+        `Hello Respect! My name is ${name} (${email}). Project Inquiry: [${projectType}].\n\nMessage: ${message}`
+      );
+      const waUrl = `https://wa.me/2348104147196?text=${waEncoded}`;
+
+      if (statusEl) {
+        statusEl.className = "form-status success";
+        statusEl.innerHTML = `
+          <p>✓ Thank you, ${name}! Your inquiry has been prepared.</p>
+          <p style="margin-top: 0.5rem;">
+            <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-whatsapp); font-weight: 700; text-decoration: underline;">
+              <i class="fab fa-whatsapp"></i> Click here to forward directly to my WhatsApp for immediate response!
+            </a>
+          </p>
+        `;
+      }
+
+      form.reset();
+    }, 600);
+  });
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = msg;
   }
 
-  type();
+  function clearError(id) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = "";
+  }
 }
 
-// Uncomment to enable typing effect on page load
-// window.addEventListener('load', () => {
-//   const heroSubtitle = document.querySelector('.hero-subtitle');
-//   if (heroSubtitle) {
-//     const originalText = heroSubtitle.textContent;
-//     typeWriter(heroSubtitle, originalText, 80);
-//   }
-// });
+// --------------------------------------------------------------------------
+// 7. Video Walkthrough Accordion Toggle
+// --------------------------------------------------------------------------
+function initVideoToggle() {
+  const toggleBtn = document.getElementById("toggle-video-btn");
+  const collapseBox = document.getElementById("video-collapse");
 
-// ==========================================
-// PROJECT CARD TILT EFFECT (Optional Enhancement)
-// ==========================================
-document.querySelectorAll(".project-card").forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  if (!toggleBtn || !collapseBox) return;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = collapseBox.classList.toggle("open");
+    toggleBtn.classList.toggle("open", isOpen);
+    toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    const videoEl = collapseBox.querySelector("video");
+    if (!isOpen && videoEl) {
+      videoEl.pause();
+    }
   });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform =
-      "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
-  });
-});
-
-// ==========================================
-// PERFORMANCE: LAZY LOAD IMAGES
-// ==========================================
-if ("loading" in HTMLImageElement.prototype) {
-  // Browser supports native lazy loading
-  const images = document.querySelectorAll('img[loading="lazy"]');
-  images.forEach((img) => {
-    img.src = img.dataset.src;
-  });
-} else {
-  // Fallback for browsers that don't support lazy loading
-  const script = document.createElement("script");
-  script.src =
-    "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
-  document.body.appendChild(script);
 }
 
-// ==========================================
-// CONSOLE GREETING (Easter Egg)
-// ==========================================
-console.log(
-  "%c👋 Hello, Developer!",
-  "color: #2563eb; font-size: 20px; font-weight: bold;"
-);
-console.log(
-  "%cWelcome to my portfolio! If you're checking out the code, feel free to reach out - I'd love to connect!",
-  "color: #06b6d4; font-size: 14px;"
-);
-console.log(
-  "%c💼 Let's build something amazing together!",
-  "color: #a855f7; font-size: 14px; font-weight: bold;"
-);
-
-// ==========================================
-// INITIALIZE ON PAGE LOAD
-// ==========================================
-window.addEventListener("load", () => {
-  // Add loaded class to body for any CSS transitions
-  document.body.classList.add("loaded");
-
-  // Initial nav link highlight
-  highlightNavLink();
-
-  console.log("✅ Portfolio website initialized successfully!");
-});
