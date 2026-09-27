@@ -1069,7 +1069,7 @@ img, video {
 /* Video Accordion Box */
 .video-accordion-box {
   width: 100%;
-  max-width: 520px;
+  max-width: 440px;
 }
 
 .btn-toggle-video {
@@ -1109,6 +1109,7 @@ img, video {
   overflow: hidden;
   border: 1px solid var(--border-card);
   background: #000;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.45);
 }
 
 .video-collapse-content.open {
@@ -1117,8 +1118,11 @@ img, video {
 
 .showcase-video {
   width: 100%;
-  max-height: 380px;
+  max-height: 520px;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
   display: block;
+  background-color: #000;
 }
 
 /* Architecture Highlights */
