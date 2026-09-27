@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abiodun Moses — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 10mm 14mm 8mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.35;
+      font-size: 8.8pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .cv-container {
+      width: 100%;
+      max-width: 210mm;
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    /* Header */
+    .cv-header {
+      text-align: center;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #0f766e;
+      margin-bottom: 8px;
+    }
+
+    .cv-name {
+      font-size: 19pt;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      text-transform: uppercase;
+    }
+
+    .cv-title {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #0f766e;
+      margin-top: 2px;
+      letter-spacing: 0.2px;
+    }
+
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 8.2pt;
+      color: #475569;
+      margin-top: 4px;
+    }
+
+    .cv-contacts a {
+      color: #475569;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cv-contacts a:hover {
+      color: #0f766e;
+    }
+
+    .cv-contacts i {
+      font-size: 8.5pt;
+      color: #0f766e;
+    }
+
+    /* Section Styling */
+    .cv-section {
+      margin-bottom: 7px;
+    }
+
+    .section-title {
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title i {
+      font-size: 8.5pt;
+      color: #0f766e;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 8.6pt;
+      color: #334155;
+      line-height: 1.38;
+      text-align: justify;
+    }
+
+    /* Skills Grid */
+    .skills-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5px;
+      font-size: 8.4pt;
+    }
+
+    .skill-line {
+      display: flex;
+      line-height: 1.3;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      color: #0f172a;
+      min-width: 145px;
+      flex-shrink: 0;
+    }
+
+    .skill-vals {
+      color: #334155;
+    }
+
+    /* Experience & Projects */
+    .item-block {
+      margin-bottom: 5px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .item-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .item-title {
+      font-weight: 700;
+      font-size: 9pt;
+      color: #0f172a;
+    }
+
+    .item-company {
+      font-weight: 600;
+      font-size: 8.7pt;
+      color: #0f766e;
+    }
+
+    .item-meta {
+      font-size: 8pt;
+      font-weight: 500;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    .item-tech {
+      font-size: 8pt;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 2px;
+    }
+
+    .item-links {
+      font-size: 8pt;
+      margin-left: 6px;
+    }
+
+    .item-links a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .item-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Bullet Points */
+    .bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 11px;
+      margin-bottom: 2px;
+      font-size: 8.4pt;
+      color: #334155;
+      line-height: 1.32;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: -1px;
+      color: #0f766e;
+      font-weight: bold;
+    }
+
+    .bullet-list li strong {
+      color: #0f172a;
+    }
+
+    /* Education */
+    .edu-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 8.4pt;
+    }
+
+    .edu-title strong {
+      color: #0f172a;
+    }
+
+    .edu-school {
+      color: #475569;
+    }
+
+    .edu-date {
+      color: #64748b;
+      font-size: 8pt;
+      white-space: nowrap;
+    }
+
+    /* Footer Note */
+    .cv-footer-note {
+      text-align: center;
+      font-size: 7.8pt;
+      color: #94a3b8;
+      font-style: italic;
+      margin-top: 4px;
+      padding-top: 3px;
+      border-top: 1px dotted #e2e8f0;
+    }
+
+    /* Screen view only: simulate A4 sheet */
+    @media screen {
+      body {
+        background: #f1f5f9;
+        padding: 24px 0;
+      }
+      .cv-container {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 12mm 14mm 10mm 14mm;
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cv-container">
+    
+    <!-- Header -->
+    <header class="cv-header">
+      <h1 class="cv-name">Abiodun Moses</h1>
+      <div class="cv-title">Mobile App Developer (Flutter &amp; Dart) &middot; Web Developer</div>
+      <div class="cv-contacts">
+        <span><i class="fas fa-location-dot"></i> Abuja, Nigeria</span>
+        <a href="tel:+2348104147196"><i class="fas fa-phone"></i> +234 810 414 7196</a>
+        <a href="mailto:maibodunm611@gmail.com"><i class="fas fa-envelope"></i> maibodunm611@gmail.com</a>
+        <a href="https://respectai.github.io/" target="_blank"><i class="fas fa-globe"></i> respectai.github.io</a>
+        <a href="https://github.com/RespectAi" target="_blank"><i class="fab fa-github"></i> github.com/RespectAi</a>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section class="cv-section">
+      <div class="section-title"><i class="fas fa-user"></i> Professional Summary</div>
+      <p class="summary-text">
+        Results-oriented Software Developer with 3+ years of experience engineering high-performance mobile applications with <strong>Flutter &amp; Dart</strong> and full-stack web applications with <strong>JavaScript, React, and Supabase</strong>. Strong background in building offline-first local architectures, reactive UI state management, and real-time backend synchronization. Dedicated to writing clean, maintainable, and user-focused software from concept to production.
+      </p>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="cv-section">
+      <div class="section-title"><i class="fas fa-code"></i> Technical Skills</div>
+      <div class="skills-block">
+        <div class="skill-line">
+          <span class="skill-cat">Mobile Development:</span>
+          <span class="skill-vals">Flutter, Dart, Android Studio, Cross-Platform Architecture, Local Notifications, Offline Storage, Material 3 &amp; Cupertino</span>
+        </div>
+        <div class="skill-line">
+          <span class="skill-cat">Web &amp; Front-End:</span>
+          <span class="skill-vals">JavaScript (ES6+), React, HTML5, CSS3, Flexbox/Grid, RESTful APIs, Responsive UI, Web Accessibility (a11y)</span>
+        </div>
+        <div class="skill-line">
+          <span class="skill-cat">Backend &amp; Databases:</span>
+          <span class="skill-vals">Supabase, PostgreSQL, Firebase (Auth/Firestore), SQLite, Hive, Row-Level Security (RLS)</span>
+        </div>
+        <div class="skill-line">
+          <span class="skill-cat">Tools &amp; Workflow:</span>
+          <span class="skill-vals">Git, GitHub, VS Code, Postman, Netlify, Vercel, Figma-to-Code, Web Performance, Technical SEO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="cv-section">
+      <div class="section-title"><i class="fas fa-briefcase"></i> Work Experience</div>
+      
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title-wrap">
+            <span class="item-title">Freelance Mobile &amp; Web Developer</span>
+            <span class="item-company">&middot; Self-Employed</span>
+          </div>
+          <span class="item-meta">Sep 2023 &ndash; Present | Abuja, Nigeria</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected and delivered cross-platform mobile features using <strong>Flutter and Dart</strong>, incorporating reactive state management, asynchronous streams, and offline caching.</li>
+          <li>Integrated <strong>Supabase and Firebase</strong> backend services for user authentication, real-time database subscriptions, and cloud storage across applications.</li>
+          <li>Built and deployed 10+ responsive client websites and web applications, boosting client user engagement metrics by an average of <strong>25%</strong>.</li>
+          <li>Developed clean, reusable RESTful API modules with comprehensive error handling and network resilience.</li>
+        </ul>
+      </div>
+
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title-wrap">
+            <span class="item-title">Frontend Web Developer</span>
+            <span class="item-company">&middot; Precious Ventures</span>
+          </div>
+          <span class="item-meta">May 2022 &ndash; Sep 2024 | Abuja, Nigeria</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Engineered and maintained responsive web applications using <strong>HTML5, CSS3, and JavaScript</strong>, driving a <strong>40% increase</strong> in mobile web traffic.</li>
+          <li>Audited and optimized front-end performance, reducing asset payloads and improving Core Web Vitals to achieve <strong>20% faster load times</strong>.</li>
+          <li>Implemented semantic HTML markup and on-page technical SEO, resulting in a <strong>30% boost</strong> in organic search traffic.</li>
+          <li>Collaborated with design stakeholders to translate UI wireframes into cross-browser compatible, accessible digital products.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="cv-section">
+      <div class="section-title"><i class="fas fa-diagram-project"></i> Featured Projects</div>
+
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title-wrap">
+            <span class="item-title">WasteLess &ndash; Smart Household Food Tracker &amp; Donation Network</span>
+            <span class="item-links">
+              [<a href="https://respectai.github.io/#mobile-apps" target="_blank">Video Demo</a> &middot; <a href="https://github.com/RespectAi/Final-Project-" target="_blank">GitHub</a> &middot; <a href="https://wasteless-smart-househol-52lytur.gamma.site/" target="_blank">Pitch Deck</a>]
+            </span>
+          </div>
+          <span class="item-meta">Flutter &middot; Dart &middot; Supabase &middot; PostgreSQL</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Built a production-ready Flutter mobile app enabling households to track food inventory, receive expiry push alerts, and donate surplus groceries directly to local shelters.</li>
+          <li>Engineered a Supabase PostgreSQL database schema with Row-Level Security (RLS) policies and real-time feed synchronization.</li>
+        </ul>
+      </div>
+
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title-wrap">
+            <span class="item-title">Full-Stack E-Commerce Store</span>
+            <span class="item-links">
+              [<a href="https://grand-figolla-b1a8ae.netlify.app/" target="_blank">Live Store</a> &middot; <a href="https://github.com/RespectAi/feb-2025-final-project-and-deployment-RespectAi" target="_blank">GitHub</a>]
+            </span>
+          </div>
+          <span class="item-meta">React &middot; Node.js &middot; JavaScript (ES6+) &middot; Netlify</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Engineered an e-commerce platform with responsive catalog browsing, persistent cart state, dynamic price calculations, and Netlify CI/CD deployment.</li>
+        </ul>
+      </div>
+
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title-wrap">
+            <span class="item-title">Task Management &amp; Workflow App</span>
+            <span class="item-links">
+              [<a href="https://github.com/RespectAi" target="_blank">GitHub</a>]
+            </span>
+          </div>
+          <span class="item-meta">JavaScript &middot; Firebase &middot; CSS3 Grid &middot; Local Storage</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Created a productivity application featuring task categorization, real-time status updates, and browser local storage persistence.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="cv-section">
+      <div class="section-title"><i class="fas fa-graduation-cap"></i> Education &amp; Certifications</div>
+      <div class="edu-grid">
+        <div class="edu-item">
+          <span class="edu-title"><strong>B.Eng. in Electrical &amp; Electronics Engineering</strong> &ndash; <span class="edu-school">Kwara State University, Nigeria</span></span>
+          <span class="edu-date">2021 &ndash; 2026</span>
+        </div>
+        <div class="edu-item">
+          <span class="edu-title"><strong>Software Engineering Certification</strong> &ndash; <span class="edu-school">Power Learn Academy</span></span>
+          <span class="edu-date">2025</span>
+        </div>
+        <div class="edu-item">
+          <span class="edu-title"><strong>Web Development Certification</strong> &ndash; <span class="edu-school">Digital Skill Up Africa</span></span>
+          <span class="edu-date">2024</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- References Line -->
+    <div class="cv-footer-note">
+      References: Available upon request
+    </div>
+
+  </div>
+
+</body>
+</html>
